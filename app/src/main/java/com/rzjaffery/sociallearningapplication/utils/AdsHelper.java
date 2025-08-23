@@ -27,7 +27,7 @@ public class AdsHelper {
         void onClosed();
     }
 
-    public static void loadInterstitial(Activity activity, String unitId, InterstitialListener listener) {
+    public static void showInterstitial(Activity activity, String unitId, InterstitialListener listener) {
         AdRequest adRequest = new AdRequest.Builder().build();
         InterstitialAd.load(activity, unitId, adRequest, new InterstitialAdLoadCallback() {
             @Override
