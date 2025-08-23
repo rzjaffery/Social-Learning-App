@@ -12,13 +12,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SocialLearningApplication"
         tools:targetApi="31">
-        <activity
-            android:name=".MainActivity"
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-3940256099942544~3347511713" /> <!-- test app id -->
+
+        <activity android:name=".ui.onboarding.OnboardingActivity"
+            tools:ignore="Instantiatable" />
+        <activity android:name=".ui.auth.AuthActivity"
+            tools:ignore="Instantiatable" />
+        <activity android:name=".ui.main.TaskEditFragment"
+            tools:ignore="Instantiatable" />
+        <activity android:name=".ui.main.MainActivity"
             android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
     </application>
