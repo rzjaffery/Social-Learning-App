@@ -9,14 +9,14 @@ public class FirebaseManager {
     private static FirebaseDatabase db;
     private static FirebaseStorage storage;
 
-    public static FirebaseAuth getAuth() {
+    public static FirebaseAuth auth() {
         if (auth == null) {
             auth = FirebaseAuth.getInstance();
         }
         return auth;
     }
 
-    public static FirebaseDatabase getDb() {
+    public static FirebaseDatabase db() {
         if (db == null) {
             db = FirebaseDatabase.getInstance();
             db.setPersistenceEnabled(true);
@@ -24,7 +24,7 @@ public class FirebaseManager {
         return db;
     }
 
-    public static FirebaseStorage getStorage() {
+    public static FirebaseStorage storage() {
         if (storage == null) {
             storage = FirebaseStorage.getInstance();
             storage.setMaxUploadRetryTimeMillis(10000);
