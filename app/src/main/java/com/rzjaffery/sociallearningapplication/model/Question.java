@@ -7,7 +7,9 @@ public class Question {
     public List<String> options;
     public int correct;
 
-    public Question() {}
+    public Question() {
+    }
+
     public Question(String id, String text, List<String> options, int correct) {
         this.id = id;
         this.text = text;

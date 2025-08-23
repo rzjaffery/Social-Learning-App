@@ -7,9 +7,10 @@ import com.google.firebase.FirebaseApp;
 
 public class App extends Application {
     @Override
-    public void onCreate(){
+    public void onCreate() {
         super.onCreate();
         FirebaseApp.initializeApp(this);
-        MobileAds.initialize(this, initializationStatus -> {});
+        MobileAds.initialize(this, initializationStatus -> {
+        });
     }
 }

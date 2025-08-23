@@ -15,6 +15,7 @@ public class FirebaseManager {
         }
         return auth;
     }
+
     public static FirebaseDatabase getDb() {
         if (db == null) {
             db = FirebaseDatabase.getInstance();
@@ -22,6 +23,7 @@ public class FirebaseManager {
         }
         return db;
     }
+
     public static FirebaseStorage getStorage() {
         if (storage == null) {
             storage = FirebaseStorage.getInstance();
