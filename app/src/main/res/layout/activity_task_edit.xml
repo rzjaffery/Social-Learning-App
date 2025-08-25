@@ -8,20 +8,24 @@
     <EditText
         android:id="@+id/etTitle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Title" />
+        android:layout_height="50dp"
+        android:autofillHints="title"
+        android:hint="@string/title"
+        android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/etDesc"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginTop="8dp"
-        android:hint="Description" />
+        android:autofillHints="description"
+        android:hint="@string/description"
+        android:inputType="text" />
 
     <Spinner
         android:id="@+id/spPriority"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginTop="8dp" />
 
     <Button
@@ -29,5 +33,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:text="Save" />
+        android:text="@string/save" />
 </LinearLayout>
