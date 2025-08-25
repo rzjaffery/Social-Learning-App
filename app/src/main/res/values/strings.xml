@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">Social Learning Application</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="save">Save</string>
+    <string name="message">Message</string>
+    <string name="send">Send</string>
+    <string name="welcome_back">Welcome Back</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="no_account_register">No account? Register</string>
+    <string name="next">Next</string>
+    <string name="history">History</string>
+    <string name="create_account">Create Account</string>
+    <string name="name">Name</string>
+    <string name="register">Register</string>
+    <string name="finish">Finish</string>
+    <string name="toggle">Toggle</string>
+    <string name="delete">Delete</string>
 </resources>
