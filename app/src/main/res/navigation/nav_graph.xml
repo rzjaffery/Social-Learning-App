@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?><?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/quizFragment">
+    <fragment
+        android:id="@+id/quizFragment"
+        android:name="com.rzjaffery.sociallearningapplication.ui.main.QuizFragment"
+        android:label="Quiz">
+        <action
+            android:id="@+id/action_quiz_to_history"
+            app:destination="@id/quizHistoryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/quizHistoryFragment"
+        android:name="com.rzjaffery.sociallearningapplication.ui.main.QuizHistoryFragment"
+        android:label="History" />
+    <fragment
+        android:id="@+id/tasksFragment"
+        android:name="com.rzjaffery.social.ui.main.TasksFragment"
+        android:label="Tasks" />
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="com.rzjaffery.social.ui.main.ChatFragment"
+        android:label="Chat" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.rzjaffery.social.ui.main.ProfileFragment"
+        android:label="Profile" />
+</navigation>
