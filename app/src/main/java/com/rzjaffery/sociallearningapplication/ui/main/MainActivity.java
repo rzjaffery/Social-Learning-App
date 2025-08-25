@@ -1,5 +1,6 @@
 package com.rzjaffery.sociallearningapplication.ui.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -12,7 +13,10 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.rzjaffery.sociallearningapplication.R;
+import com.rzjaffery.sociallearningapplication.ui.auth.LoginFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,6 +28,17 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = host.getNavController();
         BottomNavigationView bottomNav = findViewById(R.id.bottom_nav);
         NavigationUI.setupWithNavController(bottomNav,navController);
+//        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//        if (user == null) {
+//            // not logged in → open login screen
+//            startActivity(new Intent(this, LoginFragment.class));
+//            finish();
+//        } else {
+//            // already logged in → open main/home screen
+//            startActivity(new Intent(this, MainActivity.class));
+//            finish();
+//        }
+
     }
 
 

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
@@ -17,14 +17,14 @@
         android:label="History" />
     <fragment
         android:id="@+id/tasksFragment"
-        android:name="com.rzjaffery.social.ui.main.TasksFragment"
+        android:name="com.rzjaffery.sociallearningapplication.ui.main.TaskFragment"
         android:label="Tasks" />
     <fragment
         android:id="@+id/chatFragment"
-        android:name="com.rzjaffery.social.ui.main.ChatFragment"
+        android:name="com.rzjaffery.sociallearningapplication.ui.main.ChatFragment"
         android:label="Chat" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.rzjaffery.social.ui.main.ProfileFragment"
+        android:name="com.rzjaffery.sociallearningapplication.ui.main.ProfileFragment"
         android:label="Profile" />
 </navigation>

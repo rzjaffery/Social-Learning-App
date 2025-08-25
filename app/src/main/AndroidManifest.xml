@@ -6,9 +6,9 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/icons8_conference_50"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/icons8_conference_50"
         android:supportsRtl="true"
         android:theme="@style/Theme.SocialLearningApplication"
         tools:targetApi="31">
@@ -18,17 +18,27 @@
 
         <activity android:name=".ui.onboarding.OnboardingActivity"
             tools:ignore="Instantiatable" />
+        <activity android:name=".ui.main.ProfileFragment"
+            tools:ignore="Instantiatable" />
         <activity android:name=".ui.auth.AuthActivity"
             tools:ignore="Instantiatable" />
         <activity android:name=".ui.main.TaskEditFragment"
             tools:ignore="Instantiatable" />
-        <activity android:name=".ui.main.MainActivity"
+        <activity android:name=".ui.main.TaskFragment"
+            tools:ignore="Instantiatable" />
+        <activity android:name=".ui.main.QuizFragment"
+            tools:ignore="Instantiatable" />
+        <activity android:name=".ui.auth.LoginActivity"
+            tools:ignore="IntentFilterExportedReceiver"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <activity android:name=".ui.auth.RegisterActivity"/>
+        <activity android:name=".ui.main.MainActivity"/>
     </application>
 
 </manifest>

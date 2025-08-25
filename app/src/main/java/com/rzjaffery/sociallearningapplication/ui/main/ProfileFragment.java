@@ -26,33 +26,40 @@ public class ProfileFragment extends Fragment {
         TextView tvEmail = v.findViewById(R.id.tvEmail);
         tvQuizCnt = v.findViewById(R.id.tvQuizCount);
         tvTaskCnt = v.findViewById(R.id.tvTaskCount);
+
         var user = FirebaseAuth.getInstance().getCurrentUser();
-        assert user != null;
-        tvEmail.setText(user.getEmail());
-        tvName.setText(user.getDisplayName() == null ? "User" : user.getDisplayName());
-        String uid = user.getUid();
-        new QuizRepository().attemptRef(uid).addListenerForSingleValueEvent(new ValueEventListener() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snap) {
-                tvQuizCnt.setText("Quiz attempts: " + snap.getChildrenCount());
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError e) {
-            }
-        });
-        new TaskRepository().tasksRef(uid).addListenerForSingleValueEvent(new ValueEventListener() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snap) {
-                tvTaskCnt.setText("Tasks: " + snap.getChildrenCount());
-            }
+        if (user != null) {
+            tvEmail.setText(user.getEmail());
+            tvName.setText(user.getDisplayName() == null ? "User" : user.getDisplayName());
+            String uid = user.getUid();
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError e) {
-            }
-        });
+            new QuizRepository().attemptRef(uid).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snap) {
+                    tvQuizCnt.setText("Quiz attempts: " + snap.getChildrenCount());
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError e) {
+                }
+            });
+
+            new TaskRepository().tasksRef(uid).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snap) {
+                    tvTaskCnt.setText("Tasks: " + snap.getChildrenCount());
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError e) {
+                }
+            });
+        } else {
+            tvEmail.setText("No email");
+            tvName.setText("Guest User");
+        }
         return v;
     }
+
 }
