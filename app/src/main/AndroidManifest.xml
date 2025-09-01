@@ -17,7 +17,8 @@
             android:value="ca-app-pub-3940256099942544~3347511713" /> <!-- test app id -->
 
         <activity android:name=".ui.onboarding.OnboardingActivity"
-            tools:ignore="Instantiatable" />
+            tools:ignore="Instantiatable"
+            android:exported="false"/>
         <activity android:name=".ui.main.ProfileFragment"
             tools:ignore="Instantiatable" />
         <activity android:name=".ui.auth.AuthActivity"
@@ -28,9 +29,10 @@
             tools:ignore="Instantiatable" />
         <activity android:name=".ui.main.QuizFragment"
             tools:ignore="Instantiatable" />
-        <activity android:name=".ui.auth.LoginActivity"
-            tools:ignore="IntentFilterExportedReceiver"
-            android:exported="true">
+        <activity
+            android:name=".ui.splash.SplashActivity"
+            android:exported="true"
+            tools:ignore="Instantiatable">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
@@ -38,6 +40,7 @@
         </activity>
 
         <activity android:name=".ui.auth.RegisterActivity"/>
+        <activity android:name=".ui.auth.LoginActivity"/>
         <activity android:name=".ui.main.MainActivity"/>
     </application>
 
