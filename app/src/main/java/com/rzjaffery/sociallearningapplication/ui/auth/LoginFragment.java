@@ -1,60 +1,64 @@
 package com.rzjaffery.sociallearningapplication.ui.auth;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.ProgressBar;
-import android.widget.Toast;
-
+import android.view.*;
+import android.widget.*;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.rzjaffery.sociallearningapplication.R;
-import com.rzjaffery.sociallearningapplication.ui.onboarding.OnboardingActivity;
+import com.rzjaffery.sociallearningapplication.core.AuthPrefs;
+import com.rzjaffery.sociallearningapplication.ui.main.MainActivity;
 
 public class LoginFragment extends Fragment {
-    private EditText email, password;
+
+    private EditText etEmail, etPass;
     private ProgressBar progress;
+    private FirebaseAuth auth;
+    private CheckBox cbKeepLogged;
 
-    @SuppressLint("MissingInflatedId")
+    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inf, ViewGroup parent, Bundle b) {
-        View v = inf.inflate(R.layout.fragment_login, parent, false);
-        email = v.findViewById(R.id.etEmail);
-        password = v.findViewById(R.id.etPassword);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup c, @Nullable Bundle b) {
+        View v = inflater.inflate(R.layout.fragment_login, c, false);
+        etEmail = v.findViewById(R.id.email);
+        etPass  = v.findViewById(R.id.password);
+        cbKeepLogged = v.findViewById(R.id.cbKeepLogged);
+        Button btnLogin = v.findViewById(R.id.btnLogin);
+        TextView tvGotoRegister = v.findViewById(R.id.tvGotoRegister);
         progress = v.findViewById(R.id.progress);
-        v.findViewById(R.id.btnLogin).setOnClickListener(vw -> doLogin());
-        v.findViewById(R.id.tvRegister).setOnClickListener(vw ->
-                Navigation.findNavController(v).navigate(R.id.action_login_to_register));
+        auth = FirebaseAuth.getInstance();
+
+        btnLogin.setOnClickListener(vw -> {
+            String email = etEmail.getText().toString().trim();
+            String pass  = etPass.getText().toString();
+            if (TextUtils.isEmpty(email) || TextUtils.isEmpty(pass)) {
+                Toast.makeText(getContext(), "Enter email & password", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            progress.setVisibility(View.VISIBLE);
+            auth.signInWithEmailAndPassword(email, pass)
+                    .addOnCompleteListener(task -> {
+                        progress.setVisibility(View.GONE);
+                        if (task.isSuccessful()) {
+                            // Save "keep me logged in" choice
+                            AuthPrefs.setKeepLoggedIn(requireContext(), cbKeepLogged.isChecked());
+                            startActivity(new Intent(requireContext(), MainActivity.class));
+                            requireActivity().finish();
+                        } else {
+                            Toast.makeText(getContext(),
+                                    String.valueOf(task.getException()),
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        });
+
+        tvGotoRegister.setOnClickListener(vw ->
+                startActivity(new Intent(requireContext(), RegisterActivity.class)));
+
         return v;
-    }
-
-    private void doLogin() {
-        String e = email.getText().toString().trim();
-        String p = password.getText().toString();
-        if (TextUtils.isEmpty(e) || TextUtils.isEmpty(p)) {
-            toast("Enter email/password");
-            return;
-        }
-        progress.setVisibility(View.VISIBLE);
-        FirebaseAuth.getInstance().signInWithEmailAndPassword(e, p)
-                .addOnCompleteListener(task -> {
-                    progress.setVisibility(View.GONE);
-                    if (task.isSuccessful()) {
-                        startActivity(new Intent(getActivity(), OnboardingActivity.class));
-                        requireActivity().finish();
-                    } else
-                        toast(task.getException() != null ? task.getException().getMessage() : "Login failed");
-                });
-    }
-
-    private void toast(String s) {
-        Toast.makeText(getContext(), s, Toast.LENGTH_SHORT).show();
     }
 }

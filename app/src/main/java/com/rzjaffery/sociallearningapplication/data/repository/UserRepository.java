@@ -1,23 +1,15 @@
 package com.rzjaffery.sociallearningapplication.data.repository;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.rzjaffery.sociallearningapplication.data.FirebaseManager;
-import com.rzjaffery.sociallearningapplication.model.User;
-
-import java.util.Objects;
+import com.rzjaffery.sociallearningapplication.model.UserProfile;
 
 public class UserRepository {
-    private final DatabaseReference dbRef = FirebaseManager.db().getReference("users");
-    private final FirebaseAuth auth = FirebaseManager.auth();
-
-    public DatabaseReference currentUserRef() {
-        return dbRef.child(Objects.requireNonNull(auth.getCurrentUser()).getUid());
+    private final DatabaseReference root = FirebaseDatabase.getInstance().getReference();
+    public DatabaseReference userRef(String uid){
+        return root.child("users").child(uid).child("profile");
     }
-
-    public void saveProfile(User user) {
-        dbRef.child(user.uid).setValue(user);
+    public void save(UserProfile p){
+        userRef(p.uid).setValue(p);
     }
-
 }
