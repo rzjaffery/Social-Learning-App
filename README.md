@@ -104,6 +104,15 @@ implementation ("androidx.navigation:navigation-ui:2.7.7")
 
 <img width="440" height="920" alt="Screenshot_20250902_002547" src="https://github.com/user-attachments/assets/20b7e712-45ae-496e-ad71-0e539207a8d7" />
 
+### Task Screen 
+
+<img width="440" height="920" alt="Screenshot_20250902_002646" src="https://github.com/user-attachments/assets/c910c6a4-44a9-43a4-a46a-ec7739718821" />
+
+### Chat Screen 
+
+<img width="440" height="920" alt="Screenshot_20250902_002723" src="https://github.com/user-attachments/assets/f6e035f4-d321-491a-a9ae-5992cf603277" />
+
+
 ### Profile Screen 
 
 <img width="440" height="920" alt="Screenshot_20250902_002744" src="https://github.com/user-attachments/assets/4f124d60-bdbc-4f65-8b50-4ba0b51f00b4" />
