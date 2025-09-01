@@ -18,4 +18,10 @@
     <string name="finish">Finish</string>
     <string name="toggle">Toggle</string>
     <string name="delete">Delete</string>
+    <string-array name="quiz_categories">
+        <item>Java</item>
+        <item>Android</item>
+        <item>General Knowledge</item>
+    </string-array>
+
 </resources>

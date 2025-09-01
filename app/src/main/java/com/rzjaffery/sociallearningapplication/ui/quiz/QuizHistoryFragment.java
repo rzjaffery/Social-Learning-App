@@ -1,4 +1,4 @@
-package com.rzjaffery.sociallearningapplication.ui.main;
+package com.rzjaffery.sociallearningapplication.ui.quiz;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;

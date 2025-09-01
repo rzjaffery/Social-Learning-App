@@ -1,6 +1,8 @@
 package com.rzjaffery.sociallearningapplication.data.repository;
 
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.rzjaffery.sociallearningapplication.data.FirebaseManager;
 import com.rzjaffery.sociallearningapplication.model.QuizAttempt;
 
@@ -16,4 +18,10 @@ public class QuizRepository {
         assert id != null;
         attemptRef(uid).child(id).setValue(attempt);
     }
+    public void getQuestions(String category, ValueEventListener listener) {
+        FirebaseDatabase.getInstance().getReference("quiz_questions")
+                .child(category)
+                .addListenerForSingleValueEvent(listener);
+    }
+
 }

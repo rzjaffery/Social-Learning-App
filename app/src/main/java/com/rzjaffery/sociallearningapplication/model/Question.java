@@ -1,19 +1,20 @@
+// Question.java
 package com.rzjaffery.sociallearningapplication.model;
 
 import java.util.List;
 
 public class Question {
-    public String id, text;
-    public List<String> options;
-    public int correct;
+    private final String question;
+    private final List<String> options;
+    private final int correctIndex;
 
-    public Question() {
-    }
-
-    public Question(String id, String text, List<String> options, int correct) {
-        this.id = id;
-        this.text = text;
+    public Question(String question, List<String> options, int correctIndex) {
+        this.question = question;
         this.options = options;
-        this.correct = correct;
+        this.correctIndex = correctIndex;
     }
+
+    public String getQuestion() { return question; }
+    public List<String> getOptions() { return options; }
+    public int getCorrectIndex() { return correctIndex; }
 }

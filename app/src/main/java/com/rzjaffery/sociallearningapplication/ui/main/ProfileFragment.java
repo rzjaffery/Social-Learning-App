@@ -3,11 +3,10 @@ package com.rzjaffery.sociallearningapplication.ui.main;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.*;
+import android.widget.Button;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.*;
 import com.rzjaffery.sociallearningapplication.R;
@@ -15,8 +14,7 @@ import com.rzjaffery.sociallearningapplication.data.repository.QuizRepository;
 import com.rzjaffery.sociallearningapplication.data.repository.TaskRepository;
 
 public class ProfileFragment extends Fragment {
-    private TextView tvQuizCnt;
-    private TextView tvTaskCnt;
+    private TextView tvQuizCnt, tvTaskCnt;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -26,6 +24,7 @@ public class ProfileFragment extends Fragment {
         TextView tvEmail = v.findViewById(R.id.tvEmail);
         tvQuizCnt = v.findViewById(R.id.tvQuizCount);
         tvTaskCnt = v.findViewById(R.id.tvTaskCount);
+        Button btnLogout = v.findViewById(R.id.btnLogout);
 
         var user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -34,32 +33,35 @@ public class ProfileFragment extends Fragment {
             tvName.setText(user.getDisplayName() == null ? "User" : user.getDisplayName());
             String uid = user.getUid();
 
+            // Load quiz attempts
             new QuizRepository().attemptRef(uid).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snap) {
                     tvQuizCnt.setText("Quiz attempts: " + snap.getChildrenCount());
                 }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError e) {
-                }
+                @Override public void onCancelled(@NonNull DatabaseError e) {}
             });
 
+            // Load tasks count
             new TaskRepository().tasksRef(uid).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snap) {
                     tvTaskCnt.setText("Tasks: " + snap.getChildrenCount());
                 }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError e) {
-                }
+                @Override public void onCancelled(@NonNull DatabaseError e) {}
             });
         } else {
             tvEmail.setText("No email");
             tvName.setText("Guest User");
         }
+
+        // Logout button action
+        btnLogout.setOnClickListener(view -> {
+            FirebaseAuth.getInstance().signOut();
+            requireActivity().finishAffinity(); // closes all activities
+            System.exit(0); // exit app
+        });
+
         return v;
     }
-
 }

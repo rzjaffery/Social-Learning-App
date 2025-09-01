@@ -27,7 +27,7 @@
             tools:ignore="Instantiatable" />
         <activity android:name=".ui.main.TaskFragment"
             tools:ignore="Instantiatable" />
-        <activity android:name=".ui.main.QuizFragment"
+        <activity android:name=".ui.quiz.QuizFragment"
             tools:ignore="Instantiatable" />
         <activity
             android:name=".ui.splash.SplashActivity"
