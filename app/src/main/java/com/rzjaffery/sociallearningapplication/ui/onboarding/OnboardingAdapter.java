@@ -1,63 +1,30 @@
 package com.rzjaffery.sociallearningapplication.ui.onboarding;
 
-import android.view.*;
-import android.widget.Button;
-import android.widget.TextView;
-
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.rzjaffery.sociallearningapplication.R;
 
 public class OnboardingAdapter extends RecyclerView.Adapter<OnboardingAdapter.VH> {
-    public interface FinishListener {
-        void onFinish();
+    private final int[] layouts = {
+            R.layout.onb_page_welcome,
+            R.layout.onb_page_features,
+            R.layout.onb_page_privacy
+    };
+
+    private final LayoutInflater inflater;
+    public OnboardingAdapter(android.content.Context ctx){ this.inflater = LayoutInflater.from(ctx); }
+
+    @NonNull @Override public VH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = inflater.inflate(layouts[viewType], parent, false);
+        return new VH(v);
     }
+    @Override public void onBindViewHolder(@NonNull VH holder, int position) {}
+    @Override public int getItemCount() { return layouts.length; }
+    @Override public int getItemViewType(int position) { return position; }
 
-    private final FinishListener listener;
-    private final String[] titles;
-    private final String[] subtitles;
+    static class VH extends RecyclerView.ViewHolder { VH(@NonNull View itemView){ super(itemView);} }
 
-    public OnboardingAdapter(android.content.Context ctx, FinishListener l) {
-        listener = l;
-        titles = new String[]{"Welcome", "Features", "Privacy & Terms"};
-        subtitles = new String[]{
-                "Welcome to the Social Learning App",
-                "Quizzes, Tasks, Chat, and Profiles",
-                "By continuing you agree to our terms"
-        };
-    }
-
-    @NonNull
-    @Override
-    public VH onCreateViewHolder(@NonNull ViewGroup p, int v) {
-        return new VH(LayoutInflater.from(p.getContext()).inflate(R.layout.item_onboarding, p, false));
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull VH h, int pos) {
-        h.title.setText(titles[pos]);
-        h.subtitle.setText(subtitles[pos]);
-        h.finish.setVisibility(pos == 2 ? View.VISIBLE : View.GONE);
-        h.finish.setOnClickListener(v -> {
-            if (listener != null) listener.onFinish();
-        });
-    }
-
-    @Override
-    public int getItemCount() {
-        return 3;
-    }
-
-    static class VH extends RecyclerView.ViewHolder {
-        TextView title, subtitle;
-        Button finish;
-
-        VH(View v) {
-            super(v);
-            title = v.findViewById(R.id.tvTitle);
-            subtitle = v.findViewById(R.id.tvSubtitle);
-            finish = v.findViewById(R.id.btnFinish);
-        }
-    }
 }
